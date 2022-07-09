@@ -1,0 +1,68 @@
+.overlay{
+    background:rgba(0, 0, 0, 0.5);
+	min-height:460px;
+}
+
+/* water */
+#water{	
+	min-height:460px;
+	background-size: cover;
+	background-image:url('public/images/vattern1920_thin.jpg');
+	border-bottom:2px solid #898989;
+}
+
+#loginBox{
+	background:#fff;
+    @media (max-width: 385px) {
+        min-width: 350px;  
+    }
+    min-width: 360px;
+}
+
+h1 {
+	font:14px/1.5 Lato, sans-serif;
+	margin:25px;
+	color:#4c4c4c;
+}
+
+svg {
+	font-size:120px;
+	color:#3b474c;
+	margin-bottom:20px;
+}
+
+#boxes a {
+	text-decoration:underline;
+	text-decoration-color:#868c8e;
+	color:#3b474c;
+}
+
+// #water #loginBox h1{
+// 	font:14px/1.5 Lato, sans-serif;
+// 	margin:25px;
+// 	color:#4c4c4c;
+// }
+// #water #loginBox input[type="text"]{
+// 	border: 1px solid #d2d6de;
+// 	height:32px;
+// 	width:318px;
+// 	padding-left:12px;
+// 	margin-bottom:15px;
+// }
+// #water #loginBox input[type="password"]{
+// 	border: 1px solid #d2d6de;
+// 	height:32px;
+// 	width:318px;
+// 	padding-left:12px;
+// 	margin-bottom:15px;
+// }
+// #water #loginBox button{
+// 	font:14px Lato, sans-serif;
+// 	border: 1px solid #175d7b;
+// 	background: #3c8bac;
+// 	color:#fff;
+// 	width:85px;
+// 	height:32px;
+// 	float:right;
+//     margin: 5px 20px 20px 0px;
+// }

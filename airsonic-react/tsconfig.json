@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "es6"
+        ],
+        "baseUrl": "src",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "es6",
+        "moduleResolution": "node",
+        "noEmit": false,
+        "jsx": "react-jsx"
+    },
+    "paths": {
+        "components/*": ["components/*"],
+        "pages/*": ["pages/*"],
+        "public/*":["../public"],
+        "constants/*": ["constants/*"],
+        "models/*": ["models/*"]
+    }
+}
