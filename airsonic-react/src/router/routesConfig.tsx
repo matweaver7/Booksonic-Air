@@ -1,30 +1,10 @@
-import * as React from "react";
-
-import AccessDenied from "pages/AccessDenied";
-import Homepage from "pages/Homepage";
-import Login from "pages/Login";
 import { RouteObject } from "react-router-dom";
-import ROUTES from "constants/routes";
-import Recover from "pages/Recover";
-
+import public_routes from "./publicRoutes";
+import protected_routes from "./protectedRoutes";
 
 const routes_config: RouteObject[] = [
-    { 
-        path: ROUTES.home, 
-        element:<Homepage /> 
-    },
-    { 
-        path: ROUTES.accessDenied, 
-        element:<AccessDenied /> 
-    },
-    { 
-        path: ROUTES.login, 
-        element:<Login /> 
-    },
-    { 
-        path: ROUTES.recover, 
-        element:<Recover /> 
-    },
+    ...public_routes,
+    ...protected_routes
 ];
   
 export default routes_config;

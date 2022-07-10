@@ -4,8 +4,8 @@ import '../public/fonts.css';
 import fontawesome from '@fortawesome/fontawesome'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { useRoutes } from "react-router-dom";
-
 import routes_config from "./router/routesConfig";
+import { AuthProvider } from "context/context";
 
 
 const App: React.FC<{}> = () => {
@@ -13,7 +13,9 @@ const App: React.FC<{}> = () => {
 
     return (
         <div>
-            {routes}
+            <AuthProvider>
+                {routes}
+            </AuthProvider>
         </div>
     );
 };
