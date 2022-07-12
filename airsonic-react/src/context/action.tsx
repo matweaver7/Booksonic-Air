@@ -1,6 +1,7 @@
-const ROOT_URL = 'https://secret-hamlet-03431.herokuapp.com';
+const ROOT_URL = 'http://localhost:3000/api';
  
 export async function loginUser(dispatch: any, loginPayload:any) {
+    console.log("here");
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -8,16 +9,21 @@ export async function loginUser(dispatch: any, loginPayload:any) {
   };
  
   try {
+    console.log("woot");
     dispatch({ type: 'REQUEST_LOGIN' });
+    console.log(`${ROOT_URL}/login`);
     let response = await fetch(`${ROOT_URL}/login`, requestOptions);
-    let data = await response.json();
- 
-    if (data.user) {
-      dispatch({ type: 'LOGIN_SUCCESS', payload: data });
-      localStorage.setItem('currentUser', JSON.stringify(data));
-      return data
+    console.log(response);
+    if (await response.status === 302) {
+        let username = {user: loginPayload.j_username};
+        dispatch({ type: 'LOGIN_SUCCESS', payload: username });
+        localStorage.setItem('currentUser', JSON.stringify(username));
+        return username;
     }
- 
+    
+    let data = await response.json();
+    data = response.json();
+    console.log(response);
     dispatch({ type: 'LOGIN_ERROR', error: data.errors[0] });
     return;
   } catch (error) {

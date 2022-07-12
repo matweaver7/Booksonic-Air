@@ -44,12 +44,14 @@ module.exports = {
     extensions: [".ts", ".js", ".tsx", ".css"],
     alias: {
       "components": path.resolve(__dirname, 'src/components'),
+      "context": path.resolve(__dirname, 'src/context'),
       "pages": path.resolve(__dirname, 'src/pages'),
       "public": path.resolve(__dirname, 'public'),
       "constants": path.resolve(__dirname, 'src/constants'),
       "models": path.resolve(__dirname, "src/models")
     }
   },
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: '/',

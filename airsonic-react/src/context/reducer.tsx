@@ -4,14 +4,13 @@ import {actions, authenticationState, action_type} from "./types";
 let user = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser") || "").user
     : "";
-let token = localStorage.getItem("currentUser")
-    ? JSON.parse(localStorage.getItem("currentUser") || "").auth_token
-    : "";
+let token = document.cookie.replace(/(?:(?:^|.*;\s*)JSESSIONID\s*\=\s*([^;]*).*$)|^.*$/, "$1");
    
 export const initialState: authenticationState = {
     user: "" || user,
-    token: "" || token,
+    isAuthenticated:  token ? true : false,
     loading: false,
+    errorMessage: ''
 };
 
 
@@ -25,21 +24,22 @@ export const AuthReducer = (initialState: authenticationState, action: actions):
       case action_type.LOGIN_SUCCESS:
         return {
           ...initialState,
-          user: action.payload.user,
-          token: action.payload.auth_token,
+          user: action.payload,
+          isAuthenticated: true,
           loading: false
         };
       case action_type.LOGOUT:
         return {
           ...initialState,
           user: "",
-          token: ""
+          isAuthenticated: false
         };
    
       case action_type.LOGIN_ERROR:
         return {
           ...initialState,
           loading: false,
+          isAuthenticated: false,
           errorMessage: action.payload
         };
    

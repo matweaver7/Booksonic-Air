@@ -8,12 +8,33 @@ import "./Login.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faAndroid } from '@fortawesome/free-brands-svg-icons';
 import { faCloud } from '@fortawesome/free-solid-svg-icons';
+import { loginUser } from "context/action";
+import { useAuthDispatch, useAuthState } from "context/context";
 
 // TODO 
 // ADD i18n
 // Add CSRF
 
 const Login: React.FC<{}> = () => {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const dispatch = useAuthDispatch();
+    const { loading, errorMessage } = useAuthState().state;
+
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+
+        try {
+            let response = await loginUser(dispatch, {username, password});
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
     let modelInsecure = false;
     const csrf="I'm going to need this too";
 
@@ -31,12 +52,12 @@ const Login: React.FC<{}> = () => {
             <Form method="POST" action={ROUTES.login}>
                 <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGroupEmail">
-                    <Form.Control required id="j_username" name="j_username" type="email" placeholder="Username" />
+                    <Form.Control required id="j_username" onChange={(e:any) =>{setUsername(e.target.value)}} name="j_username" type="email" placeholder="Username" />
                 </Form.Group>
                 </Row>
                 <Row  className="mb-3">
                     <Form.Group as={Col} controlId="formGroupPassword">
-                        <Form.Control type="password" id="j_password" name="j_password" required placeholder="Password" />
+                        <Form.Control type="password" id="j_password" name="j_password" onChange={(e:any) =>{setPassword(e.target.value)}} required placeholder="Password" />
                     </Form.Group>
                 </Row>
                 <Row  className="mb-3">
@@ -49,7 +70,7 @@ const Login: React.FC<{}> = () => {
                 </Row>
                 <Row  className="mb-3">
                     <Form.Group as={Col} className="mb-3" id="formGridCheckbox">
-                        <Button variant="primary" type="submit">
+                        <Button onClick={handleLogin} variant="primary" type="submit">
                             Submit
                         </Button>
                     </Form.Group>
